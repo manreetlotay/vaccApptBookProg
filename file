@@ -1,0 +1,501 @@
+//-------------------------------------------------
+//Assignment 2-Question 1
+//Written by: Manreet Kaur Lotay 40202883
+//For COMP 248 Section P - Fall 2021
+//-------------------------------------------------
+
+import java.util.Scanner;
+
+public class VaccApptBookProg {
+
+	public static void main(String[] args) {
+		
+		//define scanner
+		Scanner scn = new Scanner(System.in);
+		
+		//print welcome message
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("   Welcome to Covid19 Vaccine Appointment Program!");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		
+		//print covid19 vaccine menu
+		System.out.print("Here is the Covid-19 vaccine menu:");
+		System.out.print("\n    1. Pfizer\n    2. Moderna\n    3. AstraZeneca\n    4. Johnson&Johnson\n    5. Sinovac\n    6. Gamaleya\n    7. Exit");
+		System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		
+		//define variables
+		int vaccinechoice, locationchoice, timechoice, shotchoice;
+		String ynans, userlocationchoice = null, usertimechoice = null;
+		
+		//do-while loop for the user to keep entering their choice of vaccine if input is incorrect, if vaccine is not unavailable, and if they want to exit
+		do
+		{
+		System.out.print("Please enter your choice (1-7): ");
+		vaccinechoice = scn.nextInt();
+		
+		//user enters wrong input
+		if (vaccinechoice <= 0 || vaccinechoice > 7 )
+			System.out.println("This is a wrong input. Please try again!");
+		else 
+		{
+			//if user wants to exit, or if vaccine is not available
+			switch(vaccinechoice)
+			{
+			case 5: 
+					{
+					//let user know this vaccine is not available and ask if they want to try again
+					System.out.print("Sorry, Sinovac is not available now! \nYour appointment is not booked successfully! Would you like to try again? (yes or no) ");
+					ynans = scn.next();
+					if (ynans.equalsIgnoreCase("no"))
+						{
+						System.out.println("Thank you for using Covid19 Vaccine Appointment Program!");
+						System.exit(0);
+						}
+					}//end of main case 5 
+					break;
+					
+			case 6:
+					{
+					//let user know this vaccine is not available and ask if they want to try again
+					System.out.print("Sorry, Gamaleya is not available now! \nYour appointment is not booked successfully! Would you like to try again? (yes or no) ");
+					ynans = scn.next();
+					if (ynans.equalsIgnoreCase("no"))
+						{	
+						System.out.println("Thank you for using Covid19 Vaccine Appointment Program!");
+						System.exit(0);
+						}
+					}//end of main case 6
+					break;
+				
+			case 7:
+					{
+					//let user know their appointment was not booked and if they want to try again
+					System.out.print("Your appointment is not booked successfully! Would you like to try again? (yes or no) ");
+					ynans = scn.next();
+						if (ynans.equalsIgnoreCase("no"))
+						{
+						System.out.println("Thank you for using Covid19 Vaccine Appointment Program!");
+						System.exit(0);
+						}
+					}
+					break;
+			}
+						
+		}//end of 3 cases
+		
+		} while (vaccinechoice <= 0 || vaccinechoice > 7 || vaccinechoice == 5 || vaccinechoice == 6);
+		
+		
+		
+		//4 different cases for available and valid choices of vaccine
+		switch (vaccinechoice) 
+		{
+			case 1: {
+					//display name of vaccine chosen
+					System.out.println("Your choice is: Pfizer");
+					
+					//display locations for Pfizer vaccine
+					System.out.println("\nPlease choose the location of vaccine Pfizer: \n        1 - Pharmaprix \n        2 - Jean Coutu");
+						
+						//do-while loop to prompt user to keep entering their choice of location if input is incorrect 
+						do
+						{
+						System.out.print("Please enter your choice (1-2): ");
+						locationchoice = scn.nextInt();
+							if (locationchoice <= 0 || locationchoice >= 3)
+								System.out.print("This is a wrong input. Please try again!");
+							
+							//assigning names to location choice of user
+							if (locationchoice == 1)
+								userlocationchoice = "Pharmaprix";
+							if (locationchoice == 2)
+								userlocationchoice = "Jean Coutu";
+							
+						} while (locationchoice <= 0 || locationchoice > 2);
+					
+						//2 different cases for the valid choice of location for Pfizer vaccine
+						switch (locationchoice)
+						{
+							case 1:
+							case 2:
+									{
+									//display time choices for vaccine
+									System.out.println("\nPlease choose the time slots: \n      1 - 2:00 - 2:15 \n      2 - 2:20 - 2:35 \n      3 - 2:40 - 2:55 \n      4 - 3:00 - 3:15 \n      5 - Quit");
+									
+									//do-while loop to prompt user to keep entering their choice of time if input is incorrect 
+									do
+									{
+									System.out.print("Please enter your choice (1-5): ");	
+									timechoice = scn.nextInt();
+										if (timechoice <= 0 || timechoice >= 6)
+											System.out.print("This is a wrong input. Please try again!");
+										
+									//assigning names to time choice of user
+									if (timechoice == 1)
+										usertimechoice = "2:00 - 2:15";
+									if (timechoice == 2)
+										usertimechoice = "2:20 - 2:35";
+									if (timechoice == 3)
+										usertimechoice = "2:40 - 2:55";
+									if (timechoice == 4)
+										usertimechoice = "3:00 - 3:15";
+									
+									} while (timechoice <= 0 || timechoice > 5);
+										
+									//5 different cases for the valid choice of time
+									switch (timechoice)
+									{
+										case 1:case 2:case 3:case 4:
+											{
+											//do-while loop to prompt user to keep entering their shot choice if input is incorrect
+											do
+											{
+											//ask user for choice of vaccine shot
+											System.out.print("Please enter the 1st or 2nd vaccine shot (1 or 2): ");
+											shotchoice = scn.nextInt();
+												if (shotchoice <= 0 || shotchoice >= 3)
+													System.out.println("This is a wrong input. Please try again!");
+												
+												} while (shotchoice <= 0 || shotchoice > 2);
+										
+												//2 different cases for valid choice of shot
+												switch (shotchoice)
+												{
+													case 1: case 2: 
+														{
+														//print summary of user's vaccine appointment
+														System.out.println("Your booked appointment is: Pfizer, " +shotchoice+ "nd dose.");
+														System.out.println("Your schedule is: " +usertimechoice+ " @ " +userlocationchoice);
+														System.out.println("\nThank you for using Covid19 Vaccine Appointment Program!");
+														}
+												}
+										
+										}//end of case 1, 2, 3, 4
+										break;
+										case 5:	
+												{
+												//ask user if they want to try again
+												System.out.println("Your appointment is not booked successfully! Would you like to try again? (yes or no)"); 
+												ynans = scn.next();
+													if (ynans.equalsIgnoreCase("no"))
+														System.out.println("Thank you for using Covid19 Vaccine Appointment Program!");
+													
+												}
+										
+										}//end of time choice switch
+										
+									} //end of location case1 and 2
+								
+								} //end of location switch
+								break;
+							} //end of main case1
+			
+		
+		case 2: {
+				//display name of vaccine chosen
+				System.out.println("Your choice is: Moderna");
+				
+				//display locations for Moderna vaccine
+				System.out.println("\nPlease choose the location of vaccine Moderna: \n        1 - Pharmaprix \n        3 - Uniprix Clinique \n        4 - Health Center");
+				
+				//do-while loop to prompt user to keep entering their choice of location if input is incorrect 
+				do
+				{
+				System.out.print("Please enter your choice (1, 3, 4): ");
+				locationchoice = scn.nextInt();
+					if (locationchoice <= 0 || locationchoice >= 5 || locationchoice == 2)
+						System.out.print("This is a wrong input. Please try again!");
+					
+					//assigning names to location choice of user
+					if (locationchoice == 1)
+						userlocationchoice = "Pharmaprix";
+					if (locationchoice == 3)
+						userlocationchoice = "Uniprix Clinique";
+					if (locationchoice == 4)
+						userlocationchoice = "Health Center";
+							
+				} while (locationchoice <= 0 || locationchoice > 4 || locationchoice == 2);
+					
+				//4 different cases for the valid choice of location
+				switch (locationchoice)
+				{
+					case 1:
+					case 3:
+					case 4:
+							{
+							//display choice of time slots for the vaccine
+							System.out.println("\nPlease choose the time slots: \n      1 - 2:00 - 2:15 \n      2 - 2:20 - 2:35 \n      3 - 2:40 - 2:55 \n      4 - 3:00 - 3:15 \n      5 - Quit");
+							
+							//prompt user to keep entering their choice of time if input is incorrect 
+							do
+							{
+							System.out.print("Please enter your choice (1-5): ");	
+							timechoice = scn.nextInt();
+								if (timechoice <= 0 || timechoice >= 6)
+									System.out.print("This is a wrong input. Please try again!");
+								
+								//assigning names to time choice of user
+								if (timechoice == 1)
+									usertimechoice = "2:00 - 2:15";
+								if (timechoice == 2)
+									usertimechoice = "2:20 - 2:35";
+								if (timechoice == 3)
+									usertimechoice = "2:40 - 2:55";
+								if (timechoice == 4)
+									usertimechoice = "3:00 - 3:15";
+											
+							} while (timechoice <= 0 || timechoice > 5);
+									
+									
+							//5 different cases for the valid choice of time
+							switch (timechoice)
+							{
+								case 1:case 2:case 3:case 4:
+										{
+										//prompt user to keep entering their shot choice if input is incorrect
+										do
+										{
+										System.out.print("Please enter the 1st or 2nd vaccine shot (1 or 2): ");
+										shotchoice = scn.nextInt();
+											if (shotchoice <= 0 || shotchoice >= 3)
+												System.out.println("This is a wrong input. Please try again!");
+										} while (shotchoice <= 0 || shotchoice > 2);
+									
+										//2 different cases for valid choice of shot
+										switch (shotchoice)
+										{
+											case 1: case 2: {
+															//print user's appointment summary
+															System.out.println("Your booked appointment is: Moderna, " +shotchoice+ "nd dose.");
+															System.out.println("Your schedule is: " +usertimechoice+ " @ " +userlocationchoice);
+															System.out.println("\nThank you for using Covid19 Vaccine Appointment Program!");
+															}
+										}
+									
+									}//case 1, 2, 3, 4
+									break;
+								
+									case 5:	{
+											//ask user if they would like to try again
+											System.out.println("Your appointment is not booked successfully! Would you like to try again? (yes or no)"); 
+											ynans = scn.next();
+												if (ynans.equalsIgnoreCase("no"))
+													System.out.println("Thank you for using Covid19 Vaccine Appointment Program!");
+												
+											}
+									
+									}//end of time choice switch
+									
+								} //end of locationcase1 and 2
+							
+							} //end of location switch
+								break;
+					
+						}//end of main case2
+		
+		case 3: {
+				//display name of vaccine chosen
+				System.out.println("Your choice is: AstraZeneca");
+				
+				//display locations for AstraZeneza vaccine
+				System.out.println("\nPlease choose the location of vaccine Pfizer: \n        2 - Jean Coutu \n        3 - Uniprix Clinique");
+				
+				//do-while loop to prompt user to keep entering their choice of location if input is incorrect 
+				do
+				{
+				System.out.print("Please enter your choice (2, 3): ");
+				locationchoice = scn.nextInt();
+					if (locationchoice <= 1 || locationchoice >= 4)
+						System.out.print("This is a wrong input. Please try again!");
+					
+					//assigning names to location choice of user
+					if (locationchoice == 2)
+						userlocationchoice = "Jean Coutu";
+					if (locationchoice == 3)
+						userlocationchoice = "Uniprix Clinique";
+					
+							
+				} while (locationchoice <= 1 || locationchoice > 3);
+					
+				//2 different cases for the valid choice of location
+				switch (locationchoice)
+				{
+					case 2:
+					case 3:
+							{
+							//display choice of time slots
+							System.out.println("\nPlease choose the time slots: \n      1 - 2:00 - 2:15 \n      2 - 2:20 - 2:35 \n      3 - 2:40 - 2:55 \n      4 - 3:00 - 3:15 \n      5 - Quit");
+							
+							//do-while loop to prompt user to keep entering their choice of time if input is incorrect 
+							do
+							{
+							System.out.print("Please enter your choice (1-5): ");	
+							timechoice = scn.nextInt();
+								if (timechoice <= 0 || timechoice >= 6)
+									System.out.print("This is a wrong input. Please try again!");
+								
+								//assigning names to time choice of user
+								if (timechoice == 1)
+									usertimechoice = "2:00 - 2:15";
+								if (timechoice == 2)
+									usertimechoice = "2:20 - 2:35";
+								if (timechoice == 3)
+									usertimechoice = "2:40 - 2:55";
+								if (timechoice == 4)
+									usertimechoice = "3:00 - 3:15";
+											
+							} while (timechoice <= 0 || timechoice > 5);
+									
+									
+							//5 different cases for the valid choice of time
+							switch (timechoice)
+							{
+							case 1:case 2:case 3:case 4:
+										{
+										//do-while loop to prompt user to keep entering their shot choice if input is incorrect
+										do
+										{
+										System.out.print("Please enter the 1st or 2nd vaccine shot (1 or 2): ");
+										shotchoice = scn.nextInt();
+											if (shotchoice <= 0 || shotchoice >= 3)
+												System.out.println("This is a wrong input. Please try again!");
+										} while (shotchoice <= 0 || shotchoice > 2);
+									
+										//2 different cases for valid choice of shot
+										switch (shotchoice)
+										{
+										case 1: case 2: {
+														//print user appointment summary
+														System.out.println("Your booked appointment is: AstraZeneca, " +shotchoice+ "nd dose.");
+														System.out.println("Your schedule is: " +usertimechoice+ " @ " +userlocationchoice);
+														System.out.println("\nThank you for using Covid19 Vaccine Appointment Program!");
+														}
+										}
+									
+							}//case 1, 2, 3, 4
+							break;
+							
+							case 5:	{
+									//ask user if they want to try again
+									System.out.println("Your appointment is not booked successfully! Would you like to try again? (yes or no)"); 
+									ynans = scn.next();
+										if (ynans.equalsIgnoreCase("no"))
+											System.out.println("Thank you for using Covid19 Vaccine Appointment Program!");
+										
+									}
+									
+									}//end of time choice switch
+									
+								} //end of locationcase1 and 2
+							
+							} //end of location switch
+								break;
+						}//end of main case 3
+		
+		case 4: {
+				//display name of vaccine chosen
+				System.out.println("Your choice is: Johnson&Johnson");
+				
+				//display locations for Johnson&Johnson vaccine
+				System.out.println("\nPlease choose the location of vaccine Johnson&Johnson: \n        4 - Health Center");
+				
+				//prompt user to keep entering their choice of location if input is incorrect 
+				do
+				{
+				System.out.print("Please enter your choice (4): ");
+				locationchoice = scn.nextInt();
+					if (locationchoice <= 3 || locationchoice >= 5)
+						System.out.print("This is a wrong input. Please try again!");
+					
+					//assigning names to location choice of user
+					if (locationchoice == 4)
+						userlocationchoice = "Health Center";
+					
+							
+				} while (locationchoice <= 3 || locationchoice > 4);
+					
+				//1 case for the valid choice of location
+				switch (locationchoice)
+				{
+					case 4:
+							{
+							//display time slots
+							System.out.println("\nPlease choose the time slots: \n      1 - 2:00 - 2:15 \n      2 - 2:20 - 2:35 \n      3 - 2:40 - 2:55 \n      4 - 3:00 - 3:15 \n      5 - Quit");
+							
+							//prompt user to keep entering their choice of time if input is incorrect 
+							do
+							{
+							System.out.print("Please enter your choice (1-5): ");	
+							timechoice = scn.nextInt();
+								if (timechoice <= 0 || timechoice >= 6)
+									System.out.print("This is a wrong input. Please try again!");
+								
+								//assigning names to time choice of user
+								if (timechoice == 1)
+									usertimechoice = "2:00 - 2:15";
+								if (timechoice == 2)
+									usertimechoice = "2:20 - 2:35";
+								if (timechoice == 3)
+									usertimechoice = "2:40 - 2:55";
+								if (timechoice == 4)
+									usertimechoice = "3:00 - 3:15";
+											
+							} while (timechoice <= 0 || timechoice > 5);
+									
+									
+							//5 different cases for the valid choice of time
+							switch (timechoice)
+							{
+								case 1:case 2:case 3:case 4:
+										{
+										//prompt user to keep entering their shot choice if input is incorrect
+										do
+										{
+										System.out.print("Please enter the 1st or 2nd vaccine shot (1 or 2): ");
+										shotchoice = scn.nextInt();
+											if (shotchoice <= 0 || shotchoice >= 3)
+												System.out.println("This is a wrong input. Please try again!");
+										} while (shotchoice <= 0 || shotchoice > 2);
+									
+										//2 different cases for valid choice of shot
+										switch (shotchoice)
+										{
+											case 1: case 2: {
+															//print user appointment summary
+															System.out.println("Your booked appointment is: Johnson&Johnson, " +shotchoice+ "nd dose.");
+															System.out.println("Your schedule is: " +usertimechoice+ " @ " +userlocationchoice);
+															System.out.println("\nThank you for using Covid19 Vaccine Appointment Program!");
+															}
+										}
+									
+									}//end of case 1, 2, 3, 4
+									break;
+									
+								case 5:	{
+										//ask user if they want to try again
+										System.out.println("Your appointment is not booked successfully! Would you like to try again? (yes or no)"); 
+										ynans = scn.next();
+											if (ynans.equalsIgnoreCase("no"))
+												System.out.println("Thank you for using Covid19 Vaccine Appointment Program!");
+											
+										}
+									}//end of time choice switch
+									
+								} //end of location case1 and 2
+							
+							} //end of location switch
+								break;
+			
+						}//end of main case4
+		
+		
+				} //end of main 4 cases switch
+			
+		
+		//close scanner
+		scn.close();
+			
+
+	}
+
+}
